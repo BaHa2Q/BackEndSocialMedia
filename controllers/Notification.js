@@ -25,16 +25,18 @@ router.get("/friend", auth,async (req, res) => {
   const userId = user.map(data => data._id)
   const profile = await Profile.find({userId:userId}) 
   const profileId= profile.map(data => data._id)
-  const friend = await Friends.find({profileId:profileId})
+  const friend = await Friends.find({friendprofileId:profileId})
   const Test = friend.map(data => data._id)
   const notification =  await Notification.find({typeId:Test}).where({view:false  })
   const Test2 = notification.map(data => data.typeId)
   const requsetNotification =  await Friends.find({_id:Test2})
-  const Test3 = requsetNotification.map(data => data.userId)
-  const profile2 = await Profile.find({userId:Test3}) 
-
-
+  const Test3 = requsetNotification.map(data => data.profileId)
+  const profile2 = await Profile.find({_id:Test3}) 
     res.send(profile2)
 });
-
+router.get("/realfriend", auth,async (req, res) => {
+ 
+  const friend = await Friends.find()
+    res.send(friend)
+});
 module.exports = router;

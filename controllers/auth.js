@@ -31,7 +31,7 @@ router.post('/login', [check('email', "ادخل البريد الاكتروني"
                 user: {
                     id: user.id,
                     name: user.name,
-                    
+                  
                 }
             }
             jwt.sign(

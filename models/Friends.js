@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema
 const FriendsSchema = new mongoose.Schema({
-  userId: {
+  profileId: {
     type: Schema.Types.ObjectId,
   },
-  profileId:{
+  friendprofileId:{
     type: Schema.Types.ObjectId,
   },
   request:{
