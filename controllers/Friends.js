@@ -10,25 +10,17 @@ const Notification = require("../models/Notification");
 const User = require("../models/User");
 
 router.get("/", auth,async (req, res) => {
-
-  const friend =  await Friends.find({ userId: req.user.id })
-  const Test1 = await User.find({_id:req.user.id});
-  const Test2 = Test1.map(data => data._id)
-  const Test3 = await Profile.find({userId:Test2});
+  const Test3 = await Profile.find({_id:req.user.MyprofileId});
   const Test4 = Test3.map(data => data._id)
   const myprofile = await Friends.find({profileId:Test4});
   const Profilefriend = await Profile.find()
-  const AddFriend = Profilefriend.filter(data => data.userId.toString() === friend)
+//   const AddFriend = Profilefriend.filter(data => data.userId.toString() === friend)
 
     res.send(myprofile)
 });
 router.get("/friend", auth,async (req, res) => {
-  const Test1 = await User.find({_id:req.user.id});
-  const Test2 = Test1.map(data => data._id)
-  const Test3 = await Profile.find({userId:Test2});
-  const Test4 = Test3.map(data => data._id)
-  const myprofile = await Friends.find({profileId:Test4});
-  const friendprofile = await Friends.find({friendprofileId:Test4});
+  const myprofile = await Friends.find({profileId:req.user.MyProfileId});
+  const friendprofile = await Friends.find({friendprofileId:req.user.MyProfileId});
   res.send({myprofile,friendprofile});
 
 });
@@ -44,7 +36,7 @@ router.put("/agree/:id", auth, (req, res) => {
     request:true
     
   };
-  Friends.findOneAndUpdate({ userId: req.params.id }, thing)
+  Friends.findOneAndUpdate({ friendprofileId: req.user.MyProfileId }, thing)
     .then((data) => res.send(data))
     .catch((data) => res.send(data.message));
 });

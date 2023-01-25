@@ -4,7 +4,9 @@ const User = require('../models/User');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const { check, validationResult } = require('express-validator/check')
+const { check, validationResult } = require('express-validator/check');
+const Profile = require('../models/Profile');
+const SectionToken = require('../models/SectionToken');
 // Load User model
 router.get('/', auth,async (req, res) => {
         const user = await User.find()
@@ -23,7 +25,8 @@ router.post('/login', [check('email', "ادخل البريد الاكتروني"
     try {
         
         let user = await User.findOne({ email });
-    
+		let userid = user.id
+		let MyProfile = await Profile.findOne({ userId:userid });
         if(user) {
             const isMatch = await bcrypt.compare(password,user.password)
             if(isMatch) {
@@ -31,7 +34,7 @@ router.post('/login', [check('email', "ادخل البريد الاكتروني"
                 user: {
                     id: user.id,
                     name: user.name,
-                  
+					MyProfileId:MyProfile.id
                 }
             }
             jwt.sign(
@@ -40,7 +43,11 @@ router.post('/login', [check('email', "ادخل البريد الاكتروني"
                 (err, token) => {
                     if (err) throw err
                     res.json({ token,successful:"تم تسجيل الدخول" })
-    
+					const sectiontoken = new SectionToken({
+						userId: user.id,
+						token:token
+					  });
+					  sectiontoken.save()
                 }
             )
             } else {

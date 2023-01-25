@@ -14,13 +14,19 @@ router.get("/", auth, (req, res) => {
     .then((data) => res.send(data));
 });
 router.get("/edit/:id", auth, (req, res) => {
-  Posts.findById(req.params.id).then((data) => res.send(data));
+  Posts.findById(req.params.id).then((post) => {
+    if (!post) {
+      res.status(500).json("error 500");
+    } else {
+      res.send(post);
+    }
+  });
 });
 router.put("/edit/:id", auth, (req, res) => {
   const { text } = req.body;
   const thing = {
     text,
-    status:true,
+    status: true,
     UpdateAt: Date.now(),
   };
 
@@ -31,7 +37,8 @@ router.put("/edit/:id", auth, (req, res) => {
 router.get("/liked", auth, async (req, res) => {
   const post = (await Posts.find()).filter(
     (data) =>
-      data.star.filter((star) => star.user.toString() === req.user.id).length >0
+      data.star.filter((star) => star.user.toString() === req.user.id).length >
+      0
   );
 
   res.send(post);
@@ -80,8 +87,6 @@ router.get("/star", auth, async (req, res) => {
   res.send(star);
 });
 
-
-
 router.get("/trash", auth, async (req, res) => {
   const post = (await Posts.find({ userId: req.user.id })).filter(
     (data) => data.status === false
@@ -91,12 +96,14 @@ router.get("/trash", auth, async (req, res) => {
 });
 
 router.put("/trash/:id", auth, (req, res) => {
-  Posts.findByIdAndUpdate({ _id: req.params.id }, { DeleteAt: Date.now() }).then(
-    (data) => res.send(data)
-  );
-  Stars.findOneAndUpdate({ postId: req.params.id }, { DeleteAt: Date.now() }).then(
-    (data) => res.send(data)
-  );
+  Posts.findByIdAndUpdate(
+    { _id: req.params.id },
+    { DeleteAt: Date.now() }
+  ).then((data) => res.send(data));
+  Stars.findOneAndUpdate(
+    { postId: req.params.id },
+    { DeleteAt: Date.now() }
+  ).then((data) => res.send(data));
 });
 // router.get("/star", auth,async(req, res) => {
 //  const stars = await Stars.find()
@@ -105,7 +112,8 @@ router.put("/trash/:id", auth, (req, res) => {
 // });
 router.post("/star/:id", auth, async (req, res) => {
   const stars = await Stars.find({ postId: req.params.id });
-  const star =stars.filter((star) => star.userId.toString() === req.user.id).length > 0;
+  const star =
+    stars.filter((star) => star.userId.toString() === req.user.id).length > 0;
   const star2 = stars.filter((star) => star.userId.toString() === req.user.id);
   const T = star2.map((data) => data._id);
   const whiteDwarf = async () => {

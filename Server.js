@@ -7,6 +7,7 @@ const userRouter = require('./controllers/User')
 const postsRouter = require('./controllers/Posts')
 const authRouter = require('./controllers/auth')
 const profileRouter = require('./controllers/Profile')
+const sectionTokenRouter = require('./controllers/SectionToken')
 const friendsRouter = require('./controllers/Friends')
 const notificationRouter = require('./controllers/Notification')
 
@@ -48,6 +49,7 @@ app.post('/upload', (req, res) => {
 app.use('/user',userRouter)
 
 app.use('/posts',postsRouter)
+app.use('/sectiontoken',sectionTokenRouter)
 app.use('/auth',authRouter)
 app.use('/profile',profileRouter)
 app.use('/friends',friendsRouter)

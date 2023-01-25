@@ -11,21 +11,14 @@ const User = require("../models/User");
 
 
 router.get("/", auth,async (req, res) => {
-  const user =  await User.find({_id:req.user.id})
-  const profileId = user.map(data => data._id)
-  const profile = await Profile.find({userId:profileId}) 
-  const userId = profile.map(data => data._id)
-  const friend = await Friends.find({profileId:userId})
+  const friend = await Friends.find({friendprofileId:req.user.MyProfileId})
   const Test = friend.map(data => data._id)
   const notification =  await Notification.find({typeId:Test}).where({view:false  })
     res.send(notification)
 });
 router.get("/friend", auth,async (req, res) => {
-  const user =  await User.find({_id:req.user.id})
-  const userId = user.map(data => data._id)
-  const profile = await Profile.find({userId:userId}) 
-  const profileId= profile.map(data => data._id)
-  const friend = await Friends.find({friendprofileId:profileId})
+
+  const friend = await Friends.find({friendprofileId:req.user.MyProfileId})
   const Test = friend.map(data => data._id)
   const notification =  await Notification.find({typeId:Test}).where({view:false  })
   const Test2 = notification.map(data => data.typeId)
