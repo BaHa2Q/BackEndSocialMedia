@@ -4,7 +4,7 @@ const app = express();
 const connectDB = require("./config/db")
 const userRouter = require('./controllers/User')
 
-const postsRouter = require('./controllers/Posts')
+const postsRouter = require('./cosntrollers/Posts')
 const authRouter = require('./controllers/auth')
 const profileRouter = require('./controllers/Profile')
 const sectionTokenRouter = require('./controllers/SectionToken')
