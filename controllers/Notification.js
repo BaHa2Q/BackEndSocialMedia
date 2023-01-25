@@ -7,7 +7,7 @@ const auth = require("../config/auth");
 const Notification = require("../models/Notification");
 const Friends = require("../models/Friends");
 const Profile = require("../models/Profile");
-const User = require("../models/User");
+const User = require("../moDdels/User");
 
 
 router.get("/", auth,async (req, res) => {

@@ -4,7 +4,7 @@ const config = require('config')
 
 // Load User model
 const Posts = require("../models/Posts");
-const User = require("../models/User");
+const User = require("../mDodels/User");
 const auth = require("../config/auth");
 const Profile = require("../models/Profile");
 

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // Load User model
-const Restaurants = require('../models/Rastaurants');
+const Restaurants = require('../moDdels/Rastaurants');
 
 router.get('/', async (req, res) => {
   const restaurants = await Restaurants.find()

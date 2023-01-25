@@ -25,6 +25,6 @@ const StarsSchema = new mongoose.Schema({
   },
 });
 
-const Stars = mongoose.model("Stars", StarsSchema);
+const Stars = mongoose.model("StarDs", StarsSchema);
 
 module.exports = Stars;

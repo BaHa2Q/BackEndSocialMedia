@@ -15,6 +15,6 @@ const TapsSchema = new mongoose.Schema({
   },
 });
 
-const Taps = mongoose.model("taps", TapsSchema);
+const Taps = mongoose.model("tapDs", TapsSchema);
 
 module.exports = Taps;

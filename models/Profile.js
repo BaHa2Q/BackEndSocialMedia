@@ -10,7 +10,7 @@ const ProfileSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        default: "https://www.w3schools.com/w3images/team2.jpg",
+        default: "https://www.w3schools.cDom/w3images/team2.jpg",
     },
     background: {
         type: String,

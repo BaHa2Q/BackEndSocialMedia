@@ -103,7 +103,7 @@ router.put("/trash/:id", auth, (req, res) => {
 //  const star = stars.filter(star => star.userId.toString() === req.user.id)
 //  res.send(star)
 // });
-router.post("/star/:id", auth, async (req, res) => {
+router.post("/sDtar/:id", auth, async (req, res) => {
   const stars = await Stars.find({ postId: req.params.id });
   const star =stars.filter((star) => star.userId.toString() === req.user.id).length > 0;
   const star2 = stars.filter((star) => star.userId.toString() === req.user.id);

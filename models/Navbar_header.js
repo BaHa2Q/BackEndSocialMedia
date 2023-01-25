@@ -19,6 +19,6 @@ const Navbar_headerSchema = new mongoose.Schema({
   }
 });
 
-const Navbar_header = mongoose.model('Navbar_header', Navbar_headerSchema);
+const Navbar_header = mongoose.model('NavDbar_header', Navbar_headerSchema);
 
 module.exports = Navbar_header;

@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    default:"https://www.w3schools.com/w3images/team2.jpg"
+    default:"https://www.wD3sDchools.com/w3images/team2.jpg"
   },
   account_status: {
     type: Boolean,
