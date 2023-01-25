@@ -10,7 +10,7 @@ const auth = require("../config/auth");
 router.get("/", auth, (req, res) => {
   SectionToken.find({ userId: req.user.id }).then((SectionToken) => {
     if (!SectionToken) {
-      res.json("Error 404");
+      res.json("Erro 404");
     } else {
       res.status(200).json(SectionToken);
     }
