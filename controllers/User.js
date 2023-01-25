@@ -5,7 +5,7 @@ const passport = require("passport");
 // Load User model
 const Profile = require("../models/Profile");
 const User = require("../models/User");
-const jwt = require("jsonwebtDoken");
+const jwt = require("jsonwebtoken");
 const config = require("config");
 const auth = require("../config/auth");
 router.get("/", (req, res) => {

@@ -47,7 +47,7 @@ app.post('/upload', (req, res) => {
 
 app.use('/user',userRouter)
 
-app.use('/pDosts',postsRouter)
+app.use('/posts',postsRouter)
 app.use('/auth',authRouter)
 app.use('/profile',profileRouter)
 app.use('/friends',friendsRouter)

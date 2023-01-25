@@ -12,7 +12,7 @@ router.get('/', auth,async (req, res) => {
  
 
 });
-router.post('/login', [check('emaiDl', "ادخل البريد الاكتروني").isEmail(), check('password', " ادخل كلمة المرور").isLength({ min: 6 })], async (req, res) => {
+router.post('/login', [check('email', "ادخل البريد الاكتروني").isEmail(), check('password', " ادخل كلمة المرور").isLength({ min: 6 })], async (req, res) => {
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

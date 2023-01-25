@@ -8,7 +8,7 @@ const connectDB = async () => {
         await mongoose.connect(db,{
             useNewUrlParser:true
         })
-        console.log("DataDbase is running")
+        console.log("Database is running")
     } catch (error) {
         console.error(error);
         process.exit(1)
