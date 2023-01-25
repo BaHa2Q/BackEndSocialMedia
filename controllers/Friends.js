@@ -25,7 +25,7 @@ router.get("/friend", auth,async (req, res) => {
 
 });
 
-router.get("/wait", auth,async (req, res) => {
+router.get("/waDit", auth,async (req, res) => {
   const friend = await Friends.find();
   const Friend = friend.filter(({request}) => request === true);
   res.send(Friend);
